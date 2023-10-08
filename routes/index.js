@@ -11,7 +11,11 @@ const MONGODB_URL = process.env.MONGODB_URL;
 
 router.use(
   cors({
-    origin: ["http://127.0.0.1:3000", "http://localhost:3000"],
+    origin: [
+      "http://127.0.0.1:3000",
+      "http://localhost:3000",
+      "https://portfolio-ver2-chi.vercel.app",
+    ],
     methods: ["GET", "PUT", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "x-auth-token"],
     credentials: true,
