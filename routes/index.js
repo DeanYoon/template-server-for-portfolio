@@ -4,8 +4,10 @@ const mongoose = require("mongoose");
 const Comment = require("./models/Comment");
 require("dotenv").config();
 const cors = require("cors");
+const { default: axios } = require("axios");
 
 const MONGODB_URL = process.env.MONGODB_URL;
+const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 
 /* GET home page. */
 
@@ -15,6 +17,8 @@ router.use(
       "http://127.0.0.1:3000",
       "http://localhost:3000",
       "https://portfolio-ver2-chi.vercel.app",
+      "https://portfolio-ver2-nejwksxb2-deanyoon.vercel.app",
+      "https://portfolio-ver2-a5v0t5iq2-deanyoon.vercel.app",
     ],
     methods: ["GET", "PUT", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization", "x-auth-token"],
@@ -28,6 +32,22 @@ router.get("/", async (req, res, next) => {
     console.log(" = ", comment);
     if (comment) {
       res.send(comment);
+    } else {
+      res.send("No data found");
+    }
+  } catch (error) {
+    console.log(error);
+    res.send("No data");
+  }
+});
+
+router.get("/news", async (req, res, next) => {
+  try {
+    const response = await axios.get(
+      `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`
+    );
+    if (response) {
+      res.send(response.data.articles);
     } else {
       res.send("No data found");
     }
