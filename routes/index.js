@@ -29,7 +29,7 @@ router.use(
 router.get("/", async (req, res, next) => {
   try {
     const comment = await Comment.find({});
-    console.log(" = ", comment);
+
     if (comment) {
       res.send(comment);
     } else {
@@ -41,11 +41,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/news", async (req, res, next) => {
+router.get("/news/:lang", async (req, res, next) => {
+  const { lang } = req.params;
+
   try {
     const response = await axios.get(
-      `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`
+      `https://newsapi.org/v2/top-headlines?country=${lang}&apiKey=${apiKey}`
     );
+
     if (response) {
       res.send(response.data.articles);
     } else {
@@ -59,7 +62,6 @@ router.get("/news", async (req, res, next) => {
 
 router.post("/", async (req, res) => {
   const comment = req.body;
-  console.log(comment);
 
   try {
     const newComment = await Comment.create(comment);
