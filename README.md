@@ -1,45 +1,52 @@
-# Node.js(Express)
+# Portfolio Website Backend
 
-Express로 구현된 Node.js 백엔드 어플리케이션 템플릿입니다.
-## 🖇️ 준비 및 확인사항
+Welcome to the backend code for my portfolio website. This part of the project handles various functionalities, such as managing comments, fetching news data, and enabling cross-origin resource sharing (CORS) for the frontend.
 
-### 지원 Node 버전
-- 8, 10, 12, 14, 16, 18
-- ⚠️ 로컬/테스트 환경과 클라우드타입에서 설정한 Node 버전이 상이한 경우 정상적으로 빌드되지 않을 수 있습니다.
+## Technologies Used
 
-### 패키지 명세
-- 빌드 시 어플리케이션에 사용된 패키지를 설치하기 위해서는 `package.json`, `package-json.json`, `yarn.lock` 중 1개의 파일이 저장소에 반영되어 있어야합니다.
-## ⌨️ 명령어
+- Node.js: The server-side runtime environment.
+- Express: A minimal web application framework for Node.js.
+- MongoDB: A NoSQL database for storing comments.
+- axios: A promise-based HTTP client for making requests to external APIs.
+- CORS: A middleware for handling Cross-Origin Resource Sharing.
+- dotenv: A library for loading environment variables from a .env file.
 
-### Install
+## Functionality
 
-```bash
-  npm ci
-```
+### Comment Handling
 
-### Start
+The backend handles user comments for the Guest Book card. It provides the following endpoints:
 
-```bash
-  npm start
-```
+- `GET /`: Retrieves all saved comments from the database.
 
+- `POST /`: Saves a new comment to the database.
 
-## 🏷️ 환경변수
+- `POST /delete`: Deletes a comment based on the provided password and text.
 
-- `NODE_ENV`: production(default) 
+### News Data
 
+The backend fetches top headlines from the News API based on the selected language. It provides the following endpoint:
 
-## 💬 문제해결
+- `GET /news/:lang`: Retrieves top headlines for a specific language.
 
-- [클라우드타입 Docs](https://docs.cloudtype.io/)
+### CORS Configuration
 
-- [클라우드타입 FAQ](https://help.cloudtype.io/guide/faq)
+The backend handles Cross-Origin Resource Sharing (CORS) to allow requests from specific origins. This is essential for interacting with the frontend from different domains.
 
-- [Discord](https://discord.gg/U7HX4BA6hu)
+## Getting Started
 
+To run the backend locally, follow these steps:
 
-## 📄 License
+1. Clone this repository.
 
-[MIT](https://choosealicense.com/licenses/mit/)
+2. Navigate to the backend directory using your command line.
 
+3. Install the required dependencies by running `npm install`.
 
+4. Set up your environment variables by creating a `.env` file and adding your MongoDB URL and News API key.
+
+5. Start the backend server by running `npm start`.
+
+The backend server will be running on the specified port, allowing the frontend to communicate with it.
+
+Thank you for exploring the backend code of my portfolio website. If you have any questions or suggestions, feel free to reach out.
